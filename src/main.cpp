@@ -6,6 +6,8 @@
 #define PATT_PIN 2        // button pin to switch animations
 #define LED_COUNT 32      // how many LEDs on strip
 
+CRGBArray<LED_COUNT> strip;
+
 void setup() {
 }
 
