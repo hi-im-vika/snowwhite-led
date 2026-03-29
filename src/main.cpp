@@ -8,6 +8,10 @@
 
 CRGBArray<LED_COUNT> strip;
 
+void patt_solid() {
+    fill_solid(strip,0,CHSV(0,255,255));
+}
+
 void setup() {
     pinMode(SENSE_PIN, INPUT_PULLUP);
     pinMode(PATT_PIN, INPUT_PULLUP);
