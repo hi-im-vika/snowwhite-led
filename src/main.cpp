@@ -8,12 +8,20 @@
 #define PRIMARY_HUE 80
 #define WAVE_MAX 255
 #define WAVE_MIN 32
+#define SCROLL_UPDATE_TIME 9
 
 uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
 
 void patt_solid() {
     fill_solid(strip,LED_COUNT,CHSV(80,255,255));
+}
+
+void patt_scroll() {
+    for (int i = 0; i < LED_COUNT; i++) {
+            strip[i] = hsv2rgb_spectrum(CHSV(PRIMARY_HUE,255, map(quadwave8(5 * i + wave_offset),0,255,WAVE_MIN,WAVE_MAX)));
+    }
+    EVERY_N_MILLIS(SCROLL_UPDATE_TIME) wave_offset--;
 }
 
 void setup() {
