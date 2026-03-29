@@ -9,6 +9,7 @@
 #define WAVE_MAX 255
 #define WAVE_MIN 32
 
+uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
 
 void patt_solid() {
