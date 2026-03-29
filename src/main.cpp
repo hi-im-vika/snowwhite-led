@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include <FastLED.h>
+
 
 // put function declarations here:
 int myFunction(int, int);
