@@ -5,7 +5,7 @@
 #define SENSE_PIN 7       // sense pin to detect if strip is connected
 #define PATT_PIN 2        // button pin to switch animations
 #define LED_COUNT 32      // how many LEDs on strip
-#define PRIMARY_HUE 80
+#define PRIMARY_HUE 24
 #define WAVE_MAX 255
 #define WAVE_MIN 32
 #define SCROLL_UPDATE_TIME 9
