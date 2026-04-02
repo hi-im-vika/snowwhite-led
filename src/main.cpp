@@ -10,7 +10,7 @@
 #define MASK_LED_COUNT 24      // how many LEDs on strip
 #define PRIMARY_HUE 24
 #define WAVE_MAX 255
-#define WAVE_MIN 32
+#define WAVE_MIN 8
 #define SCROLL_UPDATE_TIME 9
 
 uint8_t wave_offset = 255;
