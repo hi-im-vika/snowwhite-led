@@ -3,6 +3,8 @@
 
 #define LED_PIN 10         // data pin for LED strip
 #define SENSE_PIN 16       // sense pin to detect if strip is connected
+#define MASK_LED_PIN 14         // data pin for mask LED strip
+#define MASK_SENSE_PIN 15       // sense pin to detect if mask strip is connected
 #define PATT_PIN 2        // button pin to switch animations
 #define LED_COUNT 32      // how many LEDs on strip
 #define PRIMARY_HUE 24
