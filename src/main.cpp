@@ -119,6 +119,8 @@ void loop() {
   // update mask
 
   // show all
+  FastLED.show();
+  yield();
 }
 
 void next_pattern() {
