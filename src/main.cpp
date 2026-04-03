@@ -142,7 +142,9 @@ void next_pattern() {
 
 void patt_solid() {
   fill_solid(strip, LED_COUNT, CHSV(PRIMARY_HUE, 255, 255));
-  fill_solid(mask_strip, MASK_LED_COUNT, CHSV(PRIMARY_HUE, 255, 255));
+  if (digitalRead(MASK_SENSE_PIN) == LOW) {
+    fill_solid(mask_strip, mask_idx, CHSV(PRIMARY_HUE, 255, 255));
+  }
 }
 
 void patt_scroll() {
@@ -151,10 +153,12 @@ void patt_scroll() {
         PRIMARY_HUE, 255,
         map(cubicwave8(50 * i + wave_offset), 0, 255, WAVE_MIN, WAVE_MAX)));
   }
-  for (int i = 0; i < MASK_LED_COUNT; i++) {
-    mask_strip[i] = hsv2rgb_spectrum(CHSV(
-        PRIMARY_HUE, 255,
-        map(cubicwave8(50 * i + wave_offset), 0, 255, WAVE_MIN, WAVE_MAX)));
+  if (digitalRead(MASK_SENSE_PIN) == LOW) {
+    for (int i = 0; i < mask_idx; i++) {
+      mask_strip[i] = hsv2rgb_spectrum(CHSV(
+          PRIMARY_HUE, 255,
+          map(cubicwave8(50 * i + wave_offset), 0, 255, WAVE_MIN, WAVE_MAX)));
+    }
   }
   EVERY_N_MILLIS(SCROLL_UPDATE_TIME) wave_offset--;
 }
@@ -162,5 +166,7 @@ void patt_scroll() {
 void patt_rainbow() {
   EVERY_N_MILLIS(RAINBOW_UPDATE_TIME) rainbow_hue--;
   fl::fill_rainbow_circular(strip, LED_COUNT, rainbow_hue, false);
-  fl::fill_rainbow_circular(mask_strip, MASK_LED_COUNT, rainbow_hue, false);
+  if (digitalRead(MASK_SENSE_PIN) == LOW) {
+    fl::fill_rainbow_circular(mask_strip, mask_idx, rainbow_hue, false);
+  }
 }
