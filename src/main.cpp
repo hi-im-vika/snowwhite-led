@@ -23,6 +23,7 @@ CRGBArray<MASK_LED_COUNT> mask_strip;
 
 // state machine
 unsigned long pressed_millis = 0;
+uint8_t state_idx = 0;
 
 // debounce
 bool pressed = false;
