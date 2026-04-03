@@ -25,6 +25,7 @@
 uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
 CRGBArray<MASK_LED_COUNT> mask_strip;
+uint8_t rainbow_hue = 0;
 
 // state machine
 unsigned long pressed_millis = 0;
