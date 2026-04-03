@@ -29,16 +29,20 @@ uint8_t rainbow_hue = 0;
 
 // state machine
 unsigned long pressed_millis = 0;
-uint8_t state_idx = 0;
 
 // debounce
 bool pressed = false;
 bool acted_patt = false;
 
+void next_pattern();
 void patt_solid();
 void patt_scroll();
 void patt_rainbow();
 
+typedef void (*pattern_list_t[])();
+pattern_list_t patterns = {
+    patt_solid, patt_scroll, patt_rainbow};
+uint8_t current_pattern_idx = 0;
 
 void poll_button() {
   // debounce tomfoolery
@@ -78,9 +82,13 @@ void setup() {
 
 void loop() {
   poll_button();
-  patt_scroll();
+  patterns[current_pattern_idx]();
   FastLED.show();
   yield();
+}
+
+void next_pattern() {
+  current_pattern_idx = (current_pattern_idx + 1) % ARRAY_SIZE(patterns);
 }
 
 void patt_solid() { fill_solid(strip, LED_COUNT, CHSV(PRIMARY_HUE, 255, 255)); }
