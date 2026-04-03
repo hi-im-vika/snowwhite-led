@@ -70,6 +70,7 @@ void setup() {
 }
 
 void loop() {
+    poll_button();
   patt_scroll();
   FastLED.show();
   yield();
