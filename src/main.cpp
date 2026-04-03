@@ -81,18 +81,13 @@ void setup() {
 }
 
 void loop() {
-  while (digitalRead(MASK_SENSE_PIN) == LOW) {
-    fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
-    fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
-    FastLED.setBrightness(global_brightness);
-    FastLED.show();
-    yield();
-  }
-  poll_button();
-  patterns[current_pattern_idx]();
-  FastLED.setBrightness(global_brightness);
-  FastLED.show();
-  yield();
+    // while (digitalRead(MASK_SENSE_PIN) == LOW) {
+    //   fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
+    //   fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
+    //   FastLED.setBrightness(global_brightness);
+    //   FastLED.show();
+    //   yield();
+    // }
 }
 
 void next_pattern() {
