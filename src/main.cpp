@@ -86,6 +86,7 @@ void setup() {
 }
 
 void loop() {
+  FastLED.clear();
   patterns[current_pattern_idx]();
   // update visor
   if (do_visor_startup) {
