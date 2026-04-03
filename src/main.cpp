@@ -70,7 +70,7 @@ void poll_button() {
 }
 
 void setup() {
-  pinMode(SENSE_PIN, INPUT_PULLUP);
+  pinMode(MASK_SENSE_PIN, INPUT_PULLUP);
   pinMode(PATT_PIN, INPUT_PULLUP);
   CFastLED::addLeds<NEOPIXEL, LED_PIN>(strip, LED_COUNT);
   CFastLED::addLeds<NEOPIXEL, MASK_LED_PIN>(mask_strip, MASK_LED_COUNT);
@@ -81,6 +81,13 @@ void setup() {
 }
 
 void loop() {
+  while (digitalRead(MASK_SENSE_PIN) == LOW) {
+    fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
+    fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
+    FastLED.setBrightness(global_brightness);
+    FastLED.show();
+    yield();
+  }
   poll_button();
   patterns[current_pattern_idx]();
   FastLED.setBrightness(global_brightness);
