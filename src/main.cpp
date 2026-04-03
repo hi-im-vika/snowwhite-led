@@ -12,7 +12,10 @@
 #define PRIMARY_HUE 24
 #define WAVE_MAX 255
 #define WAVE_MIN 8
+
 #define SCROLL_UPDATE_TIME 9
+#define RAINBOW_UPDATE_TIME 10
+
 #define DEBOUNCE_DELAY 10
 
 // globals
