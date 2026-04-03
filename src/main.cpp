@@ -50,7 +50,17 @@ void poll_button() {
   // switch anim
   if (pressed) {
     // logic
-    FastLED.setBrightness(0);
+    if (millis() - pressed_millis > DEBOUNCE_DELAY) {
+      if (digitalRead(PATT_PIN) == LOW && !acted_patt) {
+        next_pattern();
+        acted_patt = true;
+        // EEPROM.write(0, current_pattern_idx);
+        // EEPROM.commit();
+      } else if (digitalRead(PATT_PIN) == HIGH && acted_patt) {
+        pressed = false;
+        acted_patt = false;
+      }
+    }
   }
 }
 
