@@ -26,6 +26,7 @@ uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
 CRGBArray<MASK_LED_COUNT> mask_strip;
 uint8_t rainbow_hue = 0;
+uint8_t global_brightness = 255;
 
 // state machine
 unsigned long pressed_millis = 0;
@@ -40,8 +41,7 @@ void patt_scroll();
 void patt_rainbow();
 
 typedef void (*pattern_list_t[])();
-pattern_list_t patterns = {
-    patt_solid, patt_scroll, patt_rainbow};
+pattern_list_t patterns = {patt_solid, patt_scroll, patt_rainbow};
 uint8_t current_pattern_idx = 0;
 
 void poll_button() {
@@ -83,12 +83,20 @@ void setup() {
 void loop() {
   poll_button();
   patterns[current_pattern_idx]();
+  FastLED.setBrightness(global_brightness);
   FastLED.show();
   yield();
 }
 
 void next_pattern() {
-  current_pattern_idx = (current_pattern_idx + 1) % ARRAY_SIZE(patterns);
+  // check for underflow
+  uint8_t result = global_brightness - 64;
+  if (result < global_brightness) {
+    global_brightness = global_brightness - 64;
+  } else {
+    global_brightness = 255;
+    current_pattern_idx = (current_pattern_idx + 1) % ARRAY_SIZE(patterns);
+  }
 }
 
 void patt_solid() { fill_solid(strip, LED_COUNT, CHSV(PRIMARY_HUE, 255, 255)); }
