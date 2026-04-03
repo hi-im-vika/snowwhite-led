@@ -30,6 +30,8 @@ uint8_t rainbow_hue = 0;
 uint8_t global_brightness = 255;
 uint8_t mask_brightness = 0;
 uint8_t visor_brightness = 0;
+uint8_t mask_idx = 0;
+bool next_mask_idx = true;
 
 // state machine
 unsigned long pressed_millis = 0;
