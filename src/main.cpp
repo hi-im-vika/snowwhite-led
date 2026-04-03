@@ -99,7 +99,10 @@ void next_pattern() {
   }
 }
 
-void patt_solid() { fill_solid(strip, LED_COUNT, CHSV(PRIMARY_HUE, 255, 255)); }
+void patt_solid() {
+  fill_solid(strip, LED_COUNT, CHSV(PRIMARY_HUE, 255, 255));
+  fill_solid(mask_strip, MASK_LED_COUNT, CHSV(PRIMARY_HUE, 255, 255));
+}
 
 void patt_scroll() {
   for (int i = 0; i < LED_COUNT; i++) {
@@ -118,4 +121,5 @@ void patt_scroll() {
 void patt_rainbow() {
   EVERY_N_MILLIS(RAINBOW_UPDATE_TIME) rainbow_hue--;
   fl::fill_rainbow_circular(strip, LED_COUNT, rainbow_hue, false);
+  fl::fill_rainbow_circular(mask_strip, MASK_LED_COUNT, rainbow_hue, false);
 }
