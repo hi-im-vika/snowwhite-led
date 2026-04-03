@@ -41,6 +41,21 @@ void patt_scroll() {
     EVERY_N_MILLIS(SCROLL_UPDATE_TIME) wave_offset--;
 }
 
+void poll_button() {
+  // debounce tomfoolery
+  bool any_button_pressed =
+      digitalRead(PATT_PIN) == LOW;
+  if (any_button_pressed && !pressed) {
+    pressed = true;
+    pressed_millis = millis();
+  }
+
+  // switch anim
+  if (pressed) {
+    // logic
+  }
+}
+
 void setup() {
     pinMode(SENSE_PIN, INPUT_PULLUP);
     pinMode(PATT_PIN, INPUT_PULLUP);
