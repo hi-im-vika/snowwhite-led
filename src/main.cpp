@@ -32,6 +32,8 @@ uint8_t visor_brightness = 0;
 
 // state machine
 unsigned long pressed_millis = 0;
+bool do_visor_startup = true;
+bool do_mask_startup = true;
 
 // debounce
 bool pressed = false;
