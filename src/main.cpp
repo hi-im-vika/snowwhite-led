@@ -25,6 +25,9 @@ void patt_scroll() {
     for (int i = 0; i < LED_COUNT; i++) {
             strip[i] = hsv2rgb_spectrum(CHSV(PRIMARY_HUE,255, map(cubicwave8(50 * i + wave_offset),0,255,WAVE_MIN,WAVE_MAX)));
     }
+    for (int i = 0; i < MASK_LED_COUNT; i++) {
+            mask_strip[i] = hsv2rgb_spectrum(CHSV(PRIMARY_HUE,255, map(cubicwave8(50 * i + wave_offset),0,255,WAVE_MIN,WAVE_MAX)));
+    }
     EVERY_N_MILLIS(SCROLL_UPDATE_TIME) wave_offset--;
 }
 
