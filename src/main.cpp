@@ -85,6 +85,7 @@ void setup() {
 }
 
 void loop() {
+  // update visor
     // while (digitalRead(MASK_SENSE_PIN) == LOW) {
     //   fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
     //   fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
@@ -92,6 +93,9 @@ void loop() {
     //   FastLED.show();
     //   yield();
     // }
+  // update mask
+
+  // show all
 }
 
 void next_pattern() {
