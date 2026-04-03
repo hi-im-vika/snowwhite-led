@@ -141,9 +141,9 @@ void loop() {
 
 void next_pattern() {
   // check for underflow
-  uint8_t result = global_brightness - 64;
-  if (result < global_brightness) {
-    global_brightness = global_brightness - 64;
+  uint8_t result = global_brightness >> 1;
+  if (result > 1) {
+    global_brightness = global_brightness >> 1;
     EEPROM.write(1, global_brightness);
   } else {
     global_brightness = 255;
