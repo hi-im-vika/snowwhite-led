@@ -87,7 +87,11 @@ void setup() {
   CFastLED::addLeds<NEOPIXEL, LED_PIN>(strip, LED_COUNT);
   CFastLED::addLeds<NEOPIXEL, MASK_LED_PIN>(mask_strip, MASK_LED_COUNT);
 
-  FastLED.setBrightness(255);
+  EEPROM.begin(); // read last chosen animation
+  current_pattern_idx = EEPROM.read(0);
+  global_brightness = EEPROM.read(1);
+
+  FastLED.setBrightness(global_brightness);
   FastLED.clear();
   FastLED.show(); // turn off all LEDs ASAP
 }
@@ -140,9 +144,12 @@ void next_pattern() {
   uint8_t result = global_brightness - 64;
   if (result < global_brightness) {
     global_brightness = global_brightness - 64;
+    EEPROM.write(1, global_brightness);
   } else {
     global_brightness = 255;
     current_pattern_idx = (current_pattern_idx + 1) % ARRAY_SIZE(patterns);
+    EEPROM.write(0, current_pattern_idx);
+    EEPROM.write(1, global_brightness);
   }
 }
 
