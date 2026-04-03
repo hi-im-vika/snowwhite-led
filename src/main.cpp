@@ -43,7 +43,7 @@ void setup() {
 }
 
 void loop() {
-  patt_solid();
+  patt_scroll();
   FastLED.show();
   yield();
 }
