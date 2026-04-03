@@ -12,6 +12,7 @@
 #define WAVE_MAX 255
 #define WAVE_MIN 8
 #define SCROLL_UPDATE_TIME 9
+#define DEBOUNCE_DELAY 10
 
 uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
