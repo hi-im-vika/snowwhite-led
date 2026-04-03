@@ -112,6 +112,10 @@ void loop() {
     do_mask_startup = true;
     mask_brightness = 0;
   }
+  if (!do_visor_startup && (digitalRead(MASK_SENSE_PIN) == HIGH || (!do_mask_startup))) {
+    poll_button();
+    FastLED.setBrightness(global_brightness);
+  }
   // update mask
 
   // show all
