@@ -87,6 +87,16 @@ void setup() {
 void loop() {
   patterns[current_pattern_idx]();
   // update visor
+  if (do_visor_startup) {
+    if (visor_brightness < global_brightness) {
+      visor_brightness++;
+      strip.fadeToBlackBy(global_brightness - visor_brightness);
+    } else {
+      do_visor_startup = false;
+      visor_brightness = global_brightness;
+      strip.fadeToBlackBy(global_brightness - visor_brightness);
+    }
+  }
     // while (digitalRead(MASK_SENSE_PIN) == LOW) {
     //   fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
     //   fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
