@@ -32,6 +32,7 @@ void setup() {
     pinMode(SENSE_PIN, INPUT_PULLUP);
     pinMode(PATT_PIN, INPUT_PULLUP);
     CFastLED::addLeds<NEOPIXEL, LED_PIN>(strip, LED_COUNT);
+    CFastLED::addLeds<NEOPIXEL, MASK_LED_PIN>(mask_strip, MASK_LED_COUNT);
 
     FastLED.setBrightness(255);
     FastLED.clear();
