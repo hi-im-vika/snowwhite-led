@@ -15,6 +15,7 @@
 
 uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
+CRGBArray<MASK_LED_COUNT> mask_strip;
 
 void patt_solid() {
     fill_solid(strip,LED_COUNT,CHSV(80,255,255));
