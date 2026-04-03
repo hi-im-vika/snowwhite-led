@@ -97,13 +97,21 @@ void loop() {
       strip.fadeToBlackBy(global_brightness - visor_brightness);
     }
   }
-    // while (digitalRead(MASK_SENSE_PIN) == LOW) {
-    //   fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
-    //   fill_solid(mask_strip, MASK_LED_COUNT, CHSV(0, 255, 255));
-    //   FastLED.setBrightness(global_brightness);
-    //   FastLED.show();
-    //   yield();
-    // }
+  if (digitalRead(MASK_SENSE_PIN) == LOW) {
+    if (do_mask_startup) {
+      if (mask_brightness < global_brightness) {
+        mask_brightness++;
+        mask_strip.fadeToBlackBy(global_brightness - mask_brightness);
+      } else {
+        do_mask_startup = false;
+        mask_brightness = global_brightness;
+        mask_strip.fadeToBlackBy(global_brightness - mask_brightness);
+      }
+    }
+  } else {
+    do_mask_startup = true;
+    mask_brightness = 0;
+  }
   // update mask
 
   // show all
