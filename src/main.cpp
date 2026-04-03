@@ -36,6 +36,7 @@ bool acted_patt = false;
 
 void patt_solid();
 void patt_scroll();
+void patt_rainbow();
 
 
 void poll_button() {
@@ -87,3 +88,7 @@ void patt_scroll() {
   EVERY_N_MILLIS(SCROLL_UPDATE_TIME) wave_offset--;
 }
 
+void patt_rainbow() {
+  EVERY_N_MILLIS(RAINBOW_UPDATE_TIME) rainbow_hue--;
+  fl::fill_rainbow_circular(strip, LED_COUNT, rainbow_hue, false);
+}
