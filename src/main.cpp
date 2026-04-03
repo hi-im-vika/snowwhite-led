@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
+#define ARRAY_SIZE(A) (sizeof(A) / sizeof((A)[0]))
+
 #define LED_PIN 10        // data pin for LED strip
 #define SENSE_PIN 16      // sense pin to detect if strip is connected
 #define MASK_LED_PIN 14   // data pin for mask LED strip
