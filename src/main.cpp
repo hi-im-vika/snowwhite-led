@@ -53,6 +53,7 @@ void poll_button() {
   // switch anim
   if (pressed) {
     // logic
+    FastLED.setBrightness(0);
   }
 }
 
