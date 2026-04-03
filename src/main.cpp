@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <FastLED.h>
+#include <EEPROM.h>
 
 #define LED_PIN 10         // data pin for LED strip
 #define SENSE_PIN 16       // sense pin to detect if strip is connected
