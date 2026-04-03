@@ -98,20 +98,22 @@ void loop() {
       strip.fadeToBlackBy(global_brightness - visor_brightness);
     }
   }
+  // if mask connected, do mask stuff
   if (digitalRead(MASK_SENSE_PIN) == LOW) {
-    if (do_mask_startup) {
-      if (mask_brightness < global_brightness) {
-        mask_brightness++;
-        mask_strip.fadeToBlackBy(global_brightness - mask_brightness);
+    EVERY_N_MILLIS(MASK_STARTUP_UPDATE_TIME) next_mask_idx = true;
+    if (do_mask_startup && next_mask_idx) {
+      if (mask_idx < MASK_LED_COUNT) {
+        mask_idx++;
       } else {
         do_mask_startup = false;
-        mask_brightness = global_brightness;
-        mask_strip.fadeToBlackBy(global_brightness - mask_brightness);
       }
+      next_mask_idx = false;
     }
   } else {
+    next_mask_idx = true;
     do_mask_startup = true;
     mask_brightness = 0;
+    mask_idx = 0;
   }
   if (!do_visor_startup && (digitalRead(MASK_SENSE_PIN) == HIGH || (!do_mask_startup))) {
     poll_button();
