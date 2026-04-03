@@ -14,11 +14,16 @@
 #define SCROLL_UPDATE_TIME 9
 #define DEBOUNCE_DELAY 10
 
+// globals
+// LED stuff
 uint8_t wave_offset = 255;
 CRGBArray<LED_COUNT> strip;
 CRGBArray<MASK_LED_COUNT> mask_strip;
+
+// state machine
 unsigned long pressed_millis = 0;
 
+// debounce
 bool pressed = false;
 bool acted_patt = false;
 
