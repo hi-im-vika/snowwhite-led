@@ -85,6 +85,7 @@ void setup() {
 }
 
 void loop() {
+  patterns[current_pattern_idx]();
   // update visor
     // while (digitalRead(MASK_SENSE_PIN) == LOW) {
     //   fill_solid(strip, LED_COUNT, CHSV(0, 255, 255));
