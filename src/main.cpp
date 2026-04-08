@@ -91,6 +91,11 @@ void setup() {
   current_pattern_idx = EEPROM.read(0);
   global_brightness = EEPROM.read(1);
 
+  if (current_pattern_idx > ARRAY_SIZE(patterns)) {
+    current_pattern_idx = 0;
+    EEPROM.write(0, current_pattern_idx);
+  }
+
   FastLED.setBrightness(global_brightness);
   FastLED.clear();
   FastLED.show(); // turn off all LEDs ASAP
